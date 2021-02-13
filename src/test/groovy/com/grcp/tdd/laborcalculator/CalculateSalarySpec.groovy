@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.context.ContextConfiguration
 import spock.lang.Specification
+import spock.lang.Unroll
 
 import static com.grcp.tdd.laborcalculator.core.domain.Employee.Position.DBA
 import static com.grcp.tdd.laborcalculator.core.domain.Employee.Position.DEVELOPER
@@ -23,6 +24,7 @@ class CalculateSalarySpec extends Specification {
     @Autowired
     private CalculateSalary laborCalculator;
 
+    @Unroll
     def "should calculate the Developer employee payment when he earns less than three thousand"(){
         expect:
         Employee employee = Employee.builder().name("Employee one").salary(employeeSalary).position(DEVELOPER).build()
@@ -35,6 +37,7 @@ class CalculateSalarySpec extends Specification {
         1000.0          | 900.00
     }
 
+    @Unroll
     def "should calculate the Developer employee payment when he earns more than three thousand"(){
         expect:
         Employee employee = Employee.builder().name("Employee one").salary(employeeSalary).position(DEVELOPER).build()
@@ -47,6 +50,7 @@ class CalculateSalarySpec extends Specification {
         5000.0          | 4450.0
     }
 
+    @Unroll
     def "should calculate the DBA employee payment when he earns less than two thousand"(){
         expect:
         Employee employee = Employee.builder().name("Employee one").salary(employeeSalary).position(DBA).build()
@@ -58,6 +62,7 @@ class CalculateSalarySpec extends Specification {
         1900.0          | 1729.00
     }
 
+    @Unroll
     def "should calculate the DBA employee payment when he earns more than two thousand"(){
         expect:
         Employee employee = Employee.builder().name("Employee one").salary(employeeSalary).position(DBA).build()
@@ -69,6 +74,7 @@ class CalculateSalarySpec extends Specification {
         2200.0          | 2002.0
     }
 
+    @Unroll
     def "should calculate the MANAGER employee payment when he earns less than five thousand"(){
         expect:
         Employee employee = Employee.builder().name("Employee one").salary(employeeSalary).position(MANAGER).build()
@@ -80,6 +86,7 @@ class CalculateSalarySpec extends Specification {
         4900.0          | 4165.00
     }
 
+    @Unroll
     def "should calculate the MANAGER employee payment when he earns more than five thousand"(){
         expect:
         Employee employee = Employee.builder().name("Employee one").salary(employeeSalary).position(MANAGER).build()
